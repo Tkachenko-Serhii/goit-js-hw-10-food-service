@@ -41,6 +41,9 @@ function savedTheme() {
 
   if (themeInLocalStorage) {
     document.body.classList.add(themeInLocalStorage);
-    themeToggle.checked = true;
+    if (themeInLocalStorage === theme.DARK) {
+      themeToggle.checked = true;
+    }
+    return;
   }
 }
