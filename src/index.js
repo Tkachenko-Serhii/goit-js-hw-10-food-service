@@ -44,6 +44,5 @@ function savedTheme() {
     if (themeInLocalStorage === theme.DARK) {
       themeToggle.checked = true;
     }
-    return;
   }
 }
