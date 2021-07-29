@@ -15,12 +15,32 @@ function createFoodItemMurkup(menu) {
   return foodItemTpl(menu);
 }
 
-const body = document.querySelector('body');
-const themeToggle = document.querySelector('#theme-switch-toggle');
+const themeToggle = document.getElementById('theme-switch-toggle');
+
 themeToggle.addEventListener('change', changeTheme);
+themeToggle.addEventListener('click', addToLocalStorage);
+
+savedTheme();
 
 function changeTheme() {
-  if (body.classList.toggle(theme.DARK)) {
+  if (document.body.classList.toggle(theme.DARK)) {
     return;
+  }
+}
+
+function addToLocalStorage() {
+  if (themeToggle.checked) {
+    localStorage.setItem('theme', theme.DARK);
+  } else {
+    localStorage.setItem('theme', theme.LIGHT);
+  }
+}
+
+function savedTheme() {
+  const themeInLocalStorage = localStorage.getItem('theme');
+
+  if (themeInLocalStorage) {
+    document.body.classList.add(themeInLocalStorage);
+    themeToggle.checked = true;
   }
 }
